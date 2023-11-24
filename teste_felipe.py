@@ -6,4 +6,5 @@ if ordem == 2:
 submatriz = []
 
 """for c in range(ordem):
-    determinante += -1**(1+c)*table[1][c]"""
+    determinante += -1**(1+c)*table[1][c]
+vscode online funciona"""
