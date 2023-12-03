@@ -1,4 +1,5 @@
 import random
+import numpy as np
 
 def text_to_table(text):
     table = [char for char in text]
