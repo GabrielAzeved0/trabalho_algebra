@@ -41,8 +41,14 @@ def jump_columns(table):
 def jump_lines():
     pass
 
-def inverse_table():
-    pass
+def inverse_table(table):
+    det = np.linalg.det(table)
+
+    if det == 0:
+        print("ERRO!! TENTE OUTRO TEXTO")
+    else:
+        A_inv = np.linalg.inv(table)
+        print(A_inv)
 
 def multiplie_table():
     pass
