@@ -8,3 +8,4 @@ secret = table_functions.jump_columns(secret)
 print(secret)
 secret = table_functions.jump_lines(secret)
 print(secret)
+matriz = [1,2,3,4,5]
