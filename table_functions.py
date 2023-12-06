@@ -1,6 +1,13 @@
 import random
 import numpy as np
 
+def converte_texto_matriz(texto):
+    
+    matriz = text_to_table(texto)
+    table_order(matriz)
+    matriz = format_table(matriz)
+    return matriz
+    
 def text_to_table(text):
     table = [char for char in text]
     table = [ord(char) for char in table]
@@ -20,9 +27,10 @@ def table_order(table):
     ordem = int(ordem)
     
 def jump_columns(table):
+    code = '1'
     global ordem
     new_table = []
-    jumps = random.randint(0, ordem-1)
+    jumps = random.randint(1, ordem-1)
     print(jumps)
     for line in table:
         new_line = []
@@ -35,43 +43,54 @@ def jump_columns(table):
         new_table.append(new_line)
     return new_table
     
-def jump_lines():
-    pass
+def jump_lines(table):
+    code = '2'
+    global ordem
+    new_table = []
+    jumps = random.randint(1, ordem-1)
+    print(jumps)
+    new_table = []
+    for x in range(ordem):    
+        if (x+jumps) > (ordem-1):
+            jump_aux = x + jumps - ordem
+            new_table.append(table[jump_aux])
+            continue            
+        new_table.append(table[x+jumps]) 
+    return new_table
 
 def inverse_table(table):
-    det = np.linalg.det(table)
-
-    if det == 0:
-        print("ERRO!! TENTE OUTRO TEXTO")
-    else:
-        nova_matriz = np.linalg.inv(table)
+    code = '3'
+    
+    nova_matriz = np.linalg.inv(table)
     return nova_matriz
 
 def multiplie_table(table):
+    code = '4'
     
-    n_random = random.randint(2, 10)
-    nova_matriz = []
-
-    for i in table:
-        matriz = i * n_random
-        nova_matriz.append(matriz)       
-    return nova_matriz    
+    global ordem
+    
+    n_random = random.randint(2, ordem-1)
+    for lines in table:
+        for coluns in lines:
+            coluns *= n_random       
+    return table
 
 def increase_values(table):
-    n_random = random.randint(2, 10)
-    nova_matriz = []
-
-    for i in table:
-        matriz = i + n_random
-        nova_matriz.append(matriz)       
-    return nova_matriz  
+    code = '5'
+    global ordem
+    
+    n_random = random.randint(1, ordem-1)
+    for lines in table:
+        for coluns in lines:
+            coluns -= n_random       
+    return table  
 
 def decrease_values(table):
-    n_random = random.randint(2, 10)
-    nova_matriz = []
-
-    for i in table:
-        matriz = i - n_random
-        nova_matriz.append(matriz)       
-    return nova_matriz 
-
+    code = '6'
+    global ordem
+    
+    n_random = random.randint(1, ordem-1)
+    for lines in table:
+        for coluns in lines:
+            coluns += n_random       
+    return table
