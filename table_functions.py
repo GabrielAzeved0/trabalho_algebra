@@ -47,8 +47,14 @@ def inverse_table(table):
         A_inv = np.linalg.inv(table)
         print(A_inv)
 
-def multiplie_table():
-    pass
+def multiplie_table(table):
+    
+    n_random = random.randint(2, 10)
+    nova_matriz = []
+
+    for i in table:
+        matriz = i * n_random
+        nova_matriz.append(matriz)
 
 def increase_values():
     pass
