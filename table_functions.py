@@ -45,7 +45,7 @@ def inverse_table(table):
         print("ERRO!! TENTE OUTRO TEXTO")
     else:
         A_inv = np.linalg.inv(table)
-        print(A_inv)
+    return A_inv
 
 def multiplie_table(table):
     
@@ -54,10 +54,23 @@ def multiplie_table(table):
 
     for i in table:
         matriz = i * n_random
-        nova_matriz.append(matriz)
+        nova_matriz.append(matriz)       
+    return nova_matriz    
 
-def increase_values():
-    pass
+def increase_values(table):
+    n_random = random.randint(2, 10)
+    nova_matriz = []
 
-def decrease_values():
-    pass
+    for i in table:
+        matriz = i + n_random
+        nova_matriz.append(matriz)       
+    return nova_matriz  
+
+def decrease_values(table):
+    n_random = random.randint(2, 10)
+    nova_matriz = []
+
+    for i in table:
+        matriz = i - n_random
+        nova_matriz.append(matriz)       
+    return nova_matriz 
