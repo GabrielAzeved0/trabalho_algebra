@@ -26,11 +26,12 @@ def table_order(table):
         ordem = len(table)**(1/2)
     ordem = int(ordem)
     
-def jump_columns(table):
-    code = 1
+def jump_columns(table, key):
+    code = '1'
     global ordem
     new_table = []
     jumps = random.randint(1, ordem-1)
+    key = key+code+str(jumps)
     print(jumps)
     for line in table:
         new_line = []
@@ -41,25 +42,26 @@ def jump_columns(table):
                 continue            
             new_line.append(line[x+jumps]) 
         new_table.append(new_line)
-    return new_table
+    return new_table, key
     
-def jump_lines(table):
-    code = 2
+def jump_lines(table, key):
+    code = '2'
     global ordem
     new_table = []
     jumps = random.randint(1, ordem-1)
+    key = key+code+str(jumps)
     print(jumps)
     new_table = []
     for x in range(ordem):    
         if (x+jumps) > (ordem-1):
             jump_aux = x + jumps - ordem
             new_table.append(table[jump_aux])
-            continue            
+            continue          
         new_table.append(table[x+jumps]) 
-    return new_table
+    return new_table, key
 
 def inverse_table(table):
-    code = 3
+    code = '3'
     det = np.linalg.det(table)
 
     if det == 0:
@@ -69,7 +71,7 @@ def inverse_table(table):
     return nova_matriz
 
 def multiplie_table(table):
-    code = 4
+    code = '4'
     n_random = random.randint(2, 10)
     nova_matriz = []
 
@@ -79,7 +81,7 @@ def multiplie_table(table):
     return nova_matriz    
 
 def increase_values(table):
-    code = 5
+    code = '5'
     n_random = random.randint(2, 10)
     nova_matriz = []
 
@@ -89,7 +91,7 @@ def increase_values(table):
     return nova_matriz  
 
 def decrease_values(table):
-    code = 6
+    code = '6'
     n_random = random.randint(2, 10)
 
     nova_matriz = []
