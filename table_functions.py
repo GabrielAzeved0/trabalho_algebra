@@ -1,6 +1,13 @@
 import random
 import numpy as np
 
+def converte_texto_matriz(texto):
+    global ordem
+    matriz = text_to_table(texto)
+    table_order(matriz)
+    matriz = format_table(matriz)
+    return matriz
+    
 def text_to_table(text):
     table = [char for char in text]
     table = [ord(char) for char in table]
@@ -22,7 +29,7 @@ def table_order(table):
 def jump_columns(table):
     global ordem
     new_table = []
-    jumps = random.randint(0, ordem-1)
+    jumps = random.randint(1, ordem-1)
     print(jumps)
     for line in table:
         new_line = []
@@ -35,8 +42,19 @@ def jump_columns(table):
         new_table.append(new_line)
     return new_table
     
-def jump_lines():
-    pass
+def jump_lines(table):
+    global ordem
+    new_table = []
+    jumps = random.randint(1, ordem-1)
+    print(jumps)
+    new_table = []
+    for x in range(ordem):    
+        if (x+jumps) > (ordem-1):
+            jump_aux = x + jumps - ordem
+            new_table.append(table[jump_aux])
+            continue            
+        new_table.append(table[x+jumps]) 
+    return new_table
 
 def inverse_table(table):
     det = np.linalg.det(table)
