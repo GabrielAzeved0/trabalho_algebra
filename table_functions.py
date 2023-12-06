@@ -27,6 +27,7 @@ def table_order(table):
     ordem = int(ordem)
     
 def jump_columns(table):
+    code = 1
     global ordem
     new_table = []
     jumps = random.randint(1, ordem-1)
@@ -43,6 +44,7 @@ def jump_columns(table):
     return new_table
     
 def jump_lines(table):
+    code = 2
     global ordem
     new_table = []
     jumps = random.randint(1, ordem-1)
@@ -57,6 +59,7 @@ def jump_lines(table):
     return new_table
 
 def inverse_table(table):
+    code = 3
     det = np.linalg.det(table)
 
     if det == 0:
@@ -66,7 +69,7 @@ def inverse_table(table):
     return nova_matriz
 
 def multiplie_table(table):
-    
+    code = 4
     n_random = random.randint(2, 10)
     nova_matriz = []
 
@@ -76,6 +79,7 @@ def multiplie_table(table):
     return nova_matriz    
 
 def increase_values(table):
+    code = 5
     n_random = random.randint(2, 10)
     nova_matriz = []
 
@@ -85,7 +89,9 @@ def increase_values(table):
     return nova_matriz  
 
 def decrease_values(table):
+    code = 6
     n_random = random.randint(2, 10)
+
     nova_matriz = []
 
     for i in table:
