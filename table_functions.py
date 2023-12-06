@@ -1,6 +1,18 @@
 import random
 import numpy as np
 
+def criptografa_texto():
+    chave = ''
+    texto = input()
+    table = converte_texto_matriz(texto)
+
+def sort_functions():
+    function_sorted = random.randint(1, 6)
+    match function_sorted:
+        case 1:
+            
+
+
 def converte_texto_matriz(texto):
     global ordem
     matriz = text_to_table(texto)
@@ -22,7 +34,7 @@ def table_order(table):
     global ordem
     ordem = len(table)**(1/2)
     while not ordem.is_integer():
-        table.append(1)
+        table.append('1')
         ordem = len(table)**(1/2)
     ordem = int(ordem)
     
