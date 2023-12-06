@@ -1,4 +1,5 @@
 import random
+import numpy as np
 
 def text_to_table(text):
     table = [char for char in text]
@@ -33,18 +34,44 @@ def jump_columns(table):
             new_line.append(line[x+jumps]) 
         new_table.append(new_line)
     return new_table
-
+    
 def jump_lines():
     pass
 
-def inverse_table():
-    pass
+def inverse_table(table):
+    det = np.linalg.det(table)
 
-def multiplie_table(): 
-    pass
+    if det == 0:
+        print("ERRO!! TENTE OUTRO TEXTO")
+    else:
+        nova_matriz = np.linalg.inv(table)
+    return nova_matriz
 
-def increase_values():
-    pass
+def multiplie_table(table):
+    
+    n_random = random.randint(2, 10)
+    nova_matriz = []
 
-def decrease_values():
-    pass
+    for i in table:
+        matriz = i * n_random
+        nova_matriz.append(matriz)       
+    return nova_matriz    
+
+def increase_values(table):
+    n_random = random.randint(2, 10)
+    nova_matriz = []
+
+    for i in table:
+        matriz = i + n_random
+        nova_matriz.append(matriz)       
+    return nova_matriz  
+
+def decrease_values(table):
+    n_random = random.randint(2, 10)
+    nova_matriz = []
+
+    for i in table:
+        matriz = i - n_random
+        nova_matriz.append(matriz)       
+    return nova_matriz 
+
