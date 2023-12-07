@@ -9,12 +9,13 @@ menu = """
 
 Operação Desejada: 
 """
-
+print(menu)
 op = input()
 
-if op == 1:
-    pass
-if op == 2:
+if op == '1':
+    tabela, segredo = table_functions.criptografa_texto()
+    print(tabela, segredo)
+if op == '2':
     pass
 
 
