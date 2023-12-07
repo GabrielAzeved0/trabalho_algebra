@@ -14,7 +14,7 @@ def criptografa_texto():
     return matriz, chave
 
 def sort_functions(table, key):
-    function_sorted = random.randint(1, 6)
+    function_sorted = random.randint(1, 4)
     match function_sorted:
         case 1:
             table, key = jump_columns(table, key)
@@ -23,16 +23,10 @@ def sort_functions(table, key):
             table, key = jump_lines(table, key)
             return table, key
         case 3:
-            #table, key = inverse_table(table, key)
-            return table, key
-        case 4:
             table, key = multiplie_table(table, key)
             return table, key
-        case 5:
+        case 4:
             table, key = increase_values(table, key)
-            return table, key
-        case 6:
-            #table, key = decrease_values(table, key)
             return table, key
             
 
@@ -65,8 +59,6 @@ def imprime_texto_criptgrafado(table):
     texto_criptografado = ''
     for linha in table:
         for valor in linha:
-            print(valor)
-            print(chr(valor))
             texto_criptografado += chr(valor)
     print(texto_criptografado)
 
@@ -96,15 +88,8 @@ def jump_lines(table, key):
         new_table.append(table[x-jumps])
     return new_table, key
 
-def inverse_table(table, key):
-    code = '3'
-    n_random = random.randint(0, 9)
-    table = np.linalg.inv(table)
-    key = key+code+str(n_random)
-    return table, key
-
 def multiplie_table(table, key):
-    code = '4'
+    code = '3'
     global ordem
     n_random = random.randint(2, ordem-1)
     for linha in range(ordem):
@@ -114,7 +99,7 @@ def multiplie_table(table, key):
     return table, key
 
 def increase_values(table, key):
-    code = '5'
+    code = '4'
     global ordem
     n_random = random.randint(1, ordem-1)
     for linha in range(ordem):
@@ -122,16 +107,5 @@ def increase_values(table, key):
             table[linha][coluna] += n_random
     key = key+code+str(n_random)   
     return table, key  
-
-def decrease_values(table, key):
-    code = '6'
-    global ordem
-    n_random = random.randint(1, ordem-1)
-    for linha in range(ordem):
-        for coluna in range(ordem):
-            table[linha][coluna] -= n_random
-    key = key+code+str(n_random)    
-    return table, key
-
 
 #OPERAÇÕES PARA DESCRIPTOGRAFAR----------------------------------------------------------------------------------
