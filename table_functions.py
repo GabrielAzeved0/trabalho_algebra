@@ -74,42 +74,37 @@ def jump_lines(table, key):
 
 def inverse_table(table):
     code = '3'
-    det = np.linalg.det(table)
-
-    if det == 0:
-        print("ERRO!! TENTE OUTRO TEXTO")
-    else:
-        nova_matriz = np.linalg.inv(table)
+    
+    nova_matriz = np.linalg.inv(table)
     return nova_matriz
 
 def multiplie_table(table):
     code = '4'
-    n_random = random.randint(2, 10)
-    nova_matriz = []
-
-    for i in table:
-        matriz = i * n_random
-        nova_matriz.append(matriz)       
-    return nova_matriz    
+    
+    global ordem
+    
+    n_random = random.randint(2, ordem-1)
+    for lines in table:
+        for coluns in lines:
+            coluns *= n_random       
+    return table
 
 def increase_values(table):
     code = '5'
-    n_random = random.randint(2, 10)
-    nova_matriz = []
-
-    for i in table:
-        matriz = i + n_random
-        nova_matriz.append(matriz)       
-    return nova_matriz  
+    global ordem
+    
+    n_random = random.randint(1, ordem-1)
+    for lines in table:
+        for coluns in lines:
+            coluns -= n_random       
+    return table  
 
 def decrease_values(table):
     code = '6'
-    n_random = random.randint(2, 10)
-
-    nova_matriz = []
-
-    for i in table:
-        matriz = i - n_random
-        nova_matriz.append(matriz)       
-    return nova_matriz 
-
+    global ordem
+    
+    n_random = random.randint(1, ordem-1)
+    for lines in table:
+        for coluns in lines:
+            coluns += n_random       
+    return table
