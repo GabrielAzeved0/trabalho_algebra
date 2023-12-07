@@ -1,8 +1,20 @@
 import random
 import numpy as np
 
+def criptografa_texto():
+    chave = ''
+    texto = input()
+    table = converte_texto_matriz(texto)
+
+def sort_functions():
+    function_sorted = random.randint(1, 6)
+    match function_sorted:
+        case 1:
+            
+
+
 def converte_texto_matriz(texto):
-    
+    global ordem
     matriz = text_to_table(texto)
     table_order(matriz)
     matriz = format_table(matriz)
@@ -22,15 +34,16 @@ def table_order(table):
     global ordem
     ordem = len(table)**(1/2)
     while not ordem.is_integer():
-        table.append(1)
+        table.append('1')
         ordem = len(table)**(1/2)
     ordem = int(ordem)
     
-def jump_columns(table):
+def jump_columns(table, key):
     code = '1'
     global ordem
     new_table = []
     jumps = random.randint(1, ordem-1)
+    key = key+code+str(jumps)
     print(jumps)
     for line in table:
         new_line = []
@@ -41,22 +54,23 @@ def jump_columns(table):
                 continue            
             new_line.append(line[x+jumps]) 
         new_table.append(new_line)
-    return new_table
+    return new_table, key
     
-def jump_lines(table):
+def jump_lines(table, key):
     code = '2'
     global ordem
     new_table = []
     jumps = random.randint(1, ordem-1)
+    key = key+code+str(jumps)
     print(jumps)
     new_table = []
     for x in range(ordem):    
         if (x+jumps) > (ordem-1):
             jump_aux = x + jumps - ordem
             new_table.append(table[jump_aux])
-            continue            
+            continue          
         new_table.append(table[x+jumps]) 
-    return new_table
+    return new_table, key
 
 def inverse_table(table):
     code = '3'
