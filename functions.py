@@ -1,12 +1,16 @@
 import random
 import numpy as np
 
+#FUNÇÕES PARA CRIPTOGRAFAR------------------------------------------------------------------------------------
 def criptografa_texto():
     chave = ''
     texto = input()
     matriz = converte_texto_matriz(texto)
-    for i in range(5):
+    for i in range(10):
         matriz, chave = sort_functions(matriz, chave)
+    for linha in matriz:
+        for i in range(len(linha)):
+            linha[i] += 32
     return matriz, chave
 
 def sort_functions(table, key):
@@ -19,6 +23,7 @@ def sort_functions(table, key):
             table, key = jump_lines(table, key)
             return table, key
         case 3:
+            #table, key = inverse_table(table, key)
             return table, key
         case 4:
             table, key = multiplie_table(table, key)
@@ -27,7 +32,7 @@ def sort_functions(table, key):
             table, key = increase_values(table, key)
             return table, key
         case 6:
-            table, key = decrease_values(table, key)
+            #table, key = decrease_values(table, key)
             return table, key
             
 
@@ -55,7 +60,18 @@ def table_order(table):
         table.append(1)
         ordem = len(table)**(1/2)
     ordem = int(ordem)
-    
+
+def imprime_texto_criptgrafado(table):
+    texto_criptografado = ''
+    for linha in table:
+        for valor in linha:
+            print(valor)
+            print(chr(valor))
+            texto_criptografado += chr(valor)
+    print(texto_criptografado)
+
+
+#OPERAÇÕES COM MATRIZES------------------------------------------------------------------------------------
 def jump_columns(table, key):
     code = '1'
     global ordem
@@ -116,3 +132,6 @@ def decrease_values(table, key):
             table[linha][coluna] -= n_random
     key = key+code+str(n_random)    
     return table, key
+
+
+#OPERAÇÕES PARA DESCRIPTOGRAFAR----------------------------------------------------------------------------------

@@ -1,5 +1,6 @@
-import table_functions
+import functions
 import random
+import functions
 
 menu = """
 -----------------------MENU-----------------------
@@ -12,11 +13,15 @@ Operação Desejada:
 print(menu)
 op = input()
 
-if op == '1':
-    tabela, segredo = table_functions.criptografa_texto()
-    print(tabela, segredo)
-if op == '2':
-    pass
+match op:
+    case '1':
+        tabela, segredo = functions.criptografa_texto()
+        print(tabela, segredo)
+        functions.imprime_texto_criptgrafado(tabela)
+    case '2':
+        pass
+    case _:
+        pass
 
 
 
