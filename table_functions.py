@@ -4,14 +4,32 @@ import numpy as np
 def criptografa_texto():
     chave = ''
     texto = input()
-    table = converte_texto_matriz(texto)
+    matriz = converte_texto_matriz(texto)
+    for i in range(5):
+        matriz, chave = sort_functions(matriz, chave)
+    return matriz, chave
 
-def sort_functions():
+def sort_functions(table, key):
     function_sorted = random.randint(1, 6)
     match function_sorted:
         case 1:
+            table, key = jump_columns(table, key)
+            return table, key
+        case 2:
+            table, key = jump_lines(table, key)
+            return table, key
+        case 3:
+            return table, key
+        case 4:
+            table, key = multiplie_table(table, key)
+            return table, key
+        case 5:
+            table, key = increase_values(table, key)
+            return table, key
+        case 6:
+            table, key = decrease_values(table, key)
+            return table, key
             
-
 
 def converte_texto_matriz(texto):
     global ordem
@@ -34,7 +52,7 @@ def table_order(table):
     global ordem
     ordem = len(table)**(1/2)
     while not ordem.is_integer():
-        table.append('1')
+        table.append(1)
         ordem = len(table)**(1/2)
     ordem = int(ordem)
     
@@ -44,15 +62,10 @@ def jump_columns(table, key):
     new_table = []
     jumps = random.randint(1, ordem-1)
     key = key+code+str(jumps)
-    print(jumps)
     for line in table:
         new_line = []
-        for x in range(ordem):    
-            if (x+jumps) > (ordem-1):
-                jump_aux = x + jumps - ordem
-                new_line.append(line[jump_aux])
-                continue            
-            new_line.append(line[x+jumps]) 
+        for x in range(ordem):            
+            new_line.append(line[x+jumps-ordem-1])
         new_table.append(new_line)
     return new_table, key
     
@@ -62,49 +75,44 @@ def jump_lines(table, key):
     new_table = []
     jumps = random.randint(1, ordem-1)
     key = key+code+str(jumps)
-    print(jumps)
     new_table = []
-    for x in range(ordem):    
-        if (x+jumps) > (ordem-1):
-            jump_aux = x + jumps - ordem
-            new_table.append(table[jump_aux])
-            continue          
-        new_table.append(table[x+jumps]) 
+    for x in range(ordem):           
+        new_table.append(table[x-jumps])
     return new_table, key
 
-def inverse_table(table):
+def inverse_table(table, key):
     code = '3'
-    
-    nova_matriz = np.linalg.inv(table)
-    return nova_matriz
+    n_random = random.randint(0, 9)
+    table = np.linalg.inv(table)
+    key = key+code+str(n_random)
+    return table, key
 
-def multiplie_table(table):
+def multiplie_table(table, key):
     code = '4'
-    
     global ordem
-    
     n_random = random.randint(2, ordem-1)
-    for lines in table:
-        for coluns in lines:
-            coluns *= n_random       
-    return table
+    for linha in range(ordem):
+        for coluna in range(ordem):
+            table[linha][coluna] *= n_random      
+    key = key+code+str(n_random)   
+    return table, key
 
-def increase_values(table):
+def increase_values(table, key):
     code = '5'
     global ordem
-    
     n_random = random.randint(1, ordem-1)
-    for lines in table:
-        for coluns in lines:
-            coluns -= n_random       
-    return table  
+    for linha in range(ordem):
+        for coluna in range(ordem):
+            table[linha][coluna] += n_random
+    key = key+code+str(n_random)   
+    return table, key  
 
-def decrease_values(table):
+def decrease_values(table, key):
     code = '6'
     global ordem
-    
     n_random = random.randint(1, ordem-1)
-    for lines in table:
-        for coluns in lines:
-            coluns += n_random       
-    return table
+    for linha in range(ordem):
+        for coluna in range(ordem):
+            table[linha][coluna] -= n_random
+    key = key+code+str(n_random)    
+    return table, key
