@@ -1,6 +1,5 @@
 import functions
-import random
-import functions
+import descripto_functions
 
 menu = """
 -----------------------MENU-----------------------
@@ -19,7 +18,9 @@ match op:
         print(tabela, segredo)
         functions.imprime_texto_criptgrafado(tabela)
     case '2':
-        pass
+        tabela, segredo = descripto_functions.texto_para_matriz()
+        print(tabela)
+        print(segredo)
     case _:
         pass
 
