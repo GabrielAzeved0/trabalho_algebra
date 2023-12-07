@@ -5,8 +5,10 @@ import numpy as np
 def criptografa_texto():
     chave = ''
     texto = input()
+    texto = texto.replace(' ', '_')
     matriz = converte_texto_matriz(texto)
-    for i in range(10):
+    print(matriz)
+    for i in range(4):
         matriz, chave = sort_functions(matriz, chave)
     for linha in matriz:
         for i in range(len(linha)):
@@ -40,11 +42,12 @@ def converte_texto_matriz(texto):
 def text_to_table(text):
     table = [char for char in text]
     table = [ord(char) for char in table]
+    print(table)
     return table
     
 def format_table(table):
     global ordem
-    table = [table[i::ordem] for i in range(ordem)]
+    table = [table[i:i+ordem] for i in range(0, len(table), ordem)]
     return table
 
 def table_order(table):
@@ -91,7 +94,7 @@ def jump_lines(table, key):
 def multiplie_table(table, key):
     code = '3'
     global ordem
-    n_random = random.randint(2, ordem-1)
+    n_random = random.randint(2, 4)
     for linha in range(ordem):
         for coluna in range(ordem):
             table[linha][coluna] *= n_random      
@@ -106,6 +109,4 @@ def increase_values(table, key):
         for coluna in range(ordem):
             table[linha][coluna] += n_random
     key = key+code+str(n_random)   
-    return table, key  
-
-#OPERAÇÕES PARA DESCRIPTOGRAFAR----------------------------------------------------------------------------------
+    return table, key
