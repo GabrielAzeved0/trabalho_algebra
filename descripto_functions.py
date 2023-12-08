@@ -11,20 +11,26 @@ def texto_para_matriz():
 def descriptografa_matriz(matriz, lista_chave):
     for codigo in lista_chave:
         op = codigo[0]
-        fator = codigo[1]
+        fator = int(codigo[1])
+        print(op, fator)
         matriz = desfaz_op(matriz, op, fator)
+        print(matriz)
     imprime_texto_descriptgrafado(matriz)
 
 def desfaz_op(matriz, op, fator):
     match op:
-        case 1:
+        case '1':
             matriz = descripto_jump_columns(matriz, fator)
-        case 2:
+            return matriz
+        case '2':
             matriz = descript_jump_lines(matriz, fator)
-        case 3:
+            return matriz
+        case '3':
             matriz = descript_multiplie_table(matriz, fator)
-        case 4:
+            return matriz
+        case '4':
             matriz = descript_increase(matriz, fator)
+            return matriz
 
 def imprime_texto_descriptgrafado(table):
     texto_descriptografado = ''
@@ -68,11 +74,10 @@ def descripto_jump_columns(table, fator):
     global ordem
     new_table = []
     jumps = fator
-    for line in table:
-        new_line = []
-        for x in range(ordem):            
-            new_line.append(line[x-jumps])
-        new_table.append(new_line)
+    for linha in table:
+        nova_linha = linha[jumps:] + linha[:jumps]
+        new_table.append(nova_linha)
+    print('ok1')
     return new_table
 
 def descript_jump_lines(table, fator):
@@ -80,10 +85,8 @@ def descript_jump_lines(table, fator):
     new_table = []
     jumps = fator
     new_table = []
-    for x in range(ordem):
-        if x+jumps > ordem:
-            new_table.append(table[x+jumps])        
-        new_table.append(table[x+jumps])
+    new_table = table[jumps:] + table[:jumps]
+    print('ok2')
     return new_table
 
 def descript_multiplie_table(tabela,fator):
@@ -92,6 +95,8 @@ def descript_multiplie_table(tabela,fator):
     for linha in range(ordem):
         for coluna in range(ordem):
             tabela[linha][coluna] /= fator
+            tabela[linha][coluna] = int(tabela[linha][coluna])
+    print('ok3')
     return tabela
 
 def descript_increase(tabela,fator):
@@ -100,4 +105,5 @@ def descript_increase(tabela,fator):
     for linha in range(ordem):
         for coluna in range(ordem):
             tabela[linha][coluna] -= fator
+    print('ok4')
     return tabela
