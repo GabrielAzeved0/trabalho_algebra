@@ -5,7 +5,7 @@ import numpy as np
 def criptografa_texto():
     chave = ''
     texto = input()
-    texto = texto.replace(' ', '_')
+    # texto = texto.replace(' ', '_')
     matriz = converte_texto_matriz(texto)
     print(matriz)
     for i in range(4):
@@ -53,7 +53,7 @@ def table_order(table):
     global ordem
     ordem = len(table)**(1/2)
     while not ordem.is_integer():
-        table.append(1)
+        table.append(32)
         ordem = len(table)**(1/2)
     ordem = int(ordem)
 
@@ -91,7 +91,8 @@ def jump_lines(table, key):
 def multiplie_table(table, key):
     code = '3'
     global ordem
-    n_random = random.randint(2, 4)
+    #n_random = random.randint(2, 4)
+    n_random = 2
     for linha in range(ordem):
         for coluna in range(ordem):
             table[linha][coluna] = table[linha][coluna] * n_random    

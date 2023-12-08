@@ -5,6 +5,7 @@ def texto_para_matriz():
     texto = input('Insira o texto: ')
     chave = input('Insira a chave: ')
     matriz = converte_texto_matriz(texto)
+    print(matriz)
     chave = inverter_key(chave)
     return matriz, chave
 
@@ -60,7 +61,7 @@ def table_order(table):
     global ordem
     ordem = len(table)**(1/2)
     while not ordem.is_integer():
-        table.append(1)
+        table.append(32)
         ordem = len(table)**(1/2)
     ordem = int(ordem)
     

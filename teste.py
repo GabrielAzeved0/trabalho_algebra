@@ -1,2 +1,3 @@
-matriz  = [1, 2, 3]
-print(matriz[-3])
+texto = ''
+texto = texto.join('2')
+print(texto)
