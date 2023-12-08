@@ -2,10 +2,9 @@
 texto = input()
 
 def texto_para_matriz():
-    texto = input('Insira o texto: ')
-    chave = input('Insira a chave: ')
+    texto = input('Insira o texto que deseja Descriptografar: ')
+    chave = input('Insira a chave criptográfica: ')
     matriz = converte_texto_matriz(texto)
-    print(matriz)
     chave = inverter_key(chave)
     return matriz, chave
 
@@ -13,9 +12,7 @@ def descriptografa_matriz(matriz, lista_chave):
     for codigo in lista_chave:
         op = codigo[0]
         fator = int(codigo[1])
-        print(op, fator)
         matriz = desfaz_op(matriz, op, fator)
-        print(matriz)
     imprime_texto_descriptgrafado(matriz)
 
 def desfaz_op(matriz, op, fator):
@@ -38,7 +35,7 @@ def imprime_texto_descriptgrafado(table):
     for linha in table:
         for valor in linha:
             texto_descriptografado += chr(valor)
-    print(texto_descriptografado)
+    print(f'\nFrase Descriptografada: {texto_descriptografado}')
 
 def converte_texto_matriz(texto):
     global ordem
@@ -78,7 +75,6 @@ def descripto_jump_columns(table, fator):
     for linha in table:
         nova_linha = linha[jumps:] + linha[:jumps]
         new_table.append(nova_linha)
-    print('ok1')
     return new_table
 
 def descript_jump_lines(table, fator):
@@ -87,7 +83,6 @@ def descript_jump_lines(table, fator):
     jumps = fator
     new_table = []
     new_table = table[jumps:] + table[:jumps]
-    print('ok2')
     return new_table
 
 def descript_multiplie_table(tabela,fator):
@@ -97,7 +92,6 @@ def descript_multiplie_table(tabela,fator):
         for coluna in range(ordem):
             tabela[linha][coluna] /= fator
             tabela[linha][coluna] = int(tabela[linha][coluna])
-    print('ok3')
     return tabela
 
 def descript_increase(tabela,fator):
@@ -106,5 +100,4 @@ def descript_increase(tabela,fator):
     for linha in range(ordem):
         for coluna in range(ordem):
             tabela[linha][coluna] -= fator
-    print('ok4')
     return tabela

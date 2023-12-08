@@ -4,15 +4,11 @@ import numpy as np
 #FUNÇÕES PARA CRIPTOGRAFAR------------------------------------------------------------------------------------
 def criptografa_texto():
     chave = ''
-    texto = input()
-    # texto = texto.replace(' ', '_')
+    texto = input('Insira a frase a ser Criptografada: ')
     matriz = converte_texto_matriz(texto)
-    print(matriz)
+
     for i in range(4):
         matriz, chave = sort_functions(matriz, chave)
-    # for linha in matriz:
-    #     for i in range(len(linha)):
-    #         linha[i] += 32
     return matriz, chave
 
 def sort_functions(table, key):
@@ -62,7 +58,7 @@ def imprime_texto_criptgrafado(table):
     for linha in table:
         for valor in linha:
             texto_criptografado += chr(valor)
-    print(texto_criptografado)
+    print(f'Frase Criptografada: {texto_criptografado}\n')
 
 
 #OPERAÇÕES COM MATRIZES------------------------------------------------------------------------------------
@@ -75,8 +71,6 @@ def jump_columns(table, key):
     for linha in table:
         nova_linha = linha[-jumps:] + linha[:-jumps]
         new_table.append(nova_linha)
-
-    print('ok1')
     return new_table, key
     
 def jump_lines(table, key):
@@ -85,7 +79,6 @@ def jump_lines(table, key):
     jumps = random.randint(1, ordem-1)
     key = key+code+str(jumps)
     new_table = table[-jumps:] + table[:-jumps]
-    print('ok2')
     return new_table, key
 
 def multiplie_table(table, key):
@@ -96,8 +89,7 @@ def multiplie_table(table, key):
     for linha in range(ordem):
         for coluna in range(ordem):
             table[linha][coluna] = table[linha][coluna] * n_random    
-    key = key+code+str(n_random)
-    print('ok3')   
+    key = key+code+str(n_random) 
     return table, key
 
 def increase_values(table, key):
@@ -107,6 +99,5 @@ def increase_values(table, key):
     for linha in range(ordem):
         for coluna in range(ordem):
             table[linha][coluna] += n_random
-    key = key+code+str(n_random)
-    print('ok4')   
+    key = key+code+str(n_random)  
     return table, key
