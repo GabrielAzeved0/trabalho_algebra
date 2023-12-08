@@ -87,8 +87,11 @@ def jump_lines(table, key):
     jumps = random.randint(1, ordem-1)
     key = key+code+str(jumps)
     new_table = []
-    for x in range(ordem):           
-        new_table.append(table[x-jumps])
+    for x in range(ordem):
+        if x+jumps > ordem-1:
+            new_table.append(table[x+jumps-ordem])
+            continue
+        new_table.append(table[x+jumps])
     return new_table, key
 
 def multiplie_table(table, key):

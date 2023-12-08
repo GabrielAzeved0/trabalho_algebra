@@ -19,8 +19,7 @@ match op:
         functions.imprime_texto_criptgrafado(tabela)
     case '2':
         tabela, segredo = descripto_functions.texto_para_matriz()
-        print(tabela)
-        print(segredo)
+        descripto_functions.imprime_texto_descriptgrafado(tabela)
     case _:
         pass
 
