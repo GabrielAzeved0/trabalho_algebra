@@ -1,6 +1,5 @@
 import functions
 import descripto_functions
-import os
 
 menu = """
 -----------------------MENU-----------------------
